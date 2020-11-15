@@ -1,15 +1,12 @@
 from PIL import Image, ImageDraw, ImageFont
-import markovify
-import textwrap
-import random
+import markovify, textwrap, random
 
 #### SETUP ####
 
 # Assets locations
-fontName = 'assets/Roboto.ttf'
-rawText = 'raw_text/
-.txt'
-# bgImage = 'assets/blank_error_single.png'
+# fontName = 'assets/Roboto.ttf'
+fontName = 'assets/Merriweather-Bold.ttf'
+rawText = 'raw_text/titoli.txt'
 
 # Load the raw text
 with open(rawText) as f:
@@ -20,10 +17,13 @@ with open(rawText) as f:
 text_model = markovify.NewlineText(text)
 
 # set font and size
+fontXS = ImageFont.truetype(fontName, size=20)
+fontS = ImageFont.truetype(fontName, size=40)
 font = ImageFont.truetype(fontName, size=50)
-fontM = ImageFont.truetype(fontName, size=30)
-fontS = ImageFont.truetype(fontName, size=25)
-fontXS = ImageFont.truetype(fontName, size=15)
+fontL = ImageFont.truetype(fontName, size=60)
+fontXL = ImageFont.truetype(fontName, size=70)
+
+
 
 #### USER PROMPT ####
 imgNum = input('Input how many images you need [1]: ')
@@ -47,7 +47,7 @@ for nn in range(int(imgNum)):
     draw = ImageDraw.Draw(image)
 
     # generate one short sentence of maximum 300 chars
-    message = text_model.make_short_sentence(300)
+    message = text_model.make_short_sentence(1000)
 
     # wrap the text at 50 chars
     wrapper = textwrap.TextWrapper(width=30) 
@@ -56,26 +56,18 @@ for nn in range(int(imgNum)):
     for ii in word_list[:-1]:
         message_wrap = message_wrap + ii + '\n'
     message_wrap += word_list[-1]
-    
-    ### SET THE TEXTS ###
-    # # window title
-    # (x, y) = (55, 15)
-    # title = "Alert"
-    # color = 'rgb(255, 255, 255)'
-    # # draw the title
-    # draw.text((x, y), title, fill=color, font=fontM)
 
     # main message
-    (x, y) = (80, 80)
+    (x, y) = (60, 300)
     color = 'rgb(0, 0, 0)'
     draw.multiline_text((x,y), message_wrap, fill=color, font=font, anchor=None, spacing=3, align='left', direction=None, features=None, language=None, stroke_width=0, stroke_fill=None, embedded_color=False)
 
-    # # button message
-    # (x, y) = (190, 205)
-    # CTA = 'OK'
-    # color = 'rgb(0, 0, 0)'
-    # #draw.text((x, y), CTA, fill=color, align='center', font=fontS)
-    # draw.multiline_text((x,y), CTA, fill=color, font=fontS, anchor=None, spacing=3, align='center', direction=None, features=None, language=None, stroke_width=0, stroke_fill=None, embedded_color=False)
+    # La Ropubblica
+    (x, y) = (60, 850)
+    color = 'rgb(255, 255, 255)'
+    titolo = 'la Яopubblica'
+    draw.multiline_text((x,y), titolo, fill=color, font=font, anchor=None, spacing=3, align='left', direction=None, features=None, language=None, stroke_width=0, stroke_fill=None, embedded_color=False)
+
 
     # save the edited image
     if fileName == '':
