@@ -37,7 +37,7 @@ print('Ok, I\'m going to generate ' + str(imgNum) + ' images..')
 
 for nn in range(int(imgNum)):
 
-    rndImg = random.randint(1,5)
+    rndImg = random.randint(1,7)
     bgImage = 'assets/' + str(rndImg) + '.png'
 
     # create Image object with the input image
@@ -68,9 +68,15 @@ for nn in range(int(imgNum)):
     titolo = 'la Яopubblica'
     draw.multiline_text((x,y), titolo, fill=color, font=font, anchor=None, spacing=3, align='left', direction=None, features=None, language=None, stroke_width=0, stroke_fill=None, embedded_color=False)
 
-
     # save the edited image
     if fileName == '':
         fileName = 'output'
     image.save('output/'+fileName+str(nn+1)+'.png')
     print('-- Saved image #'+str(nn+1)+' as '+fileName+str(nn+1)+'.png --')
+    
+    # save the caption
+    with open('output/captions.txt', 'w') as captionFile:
+            captionFile.write('#' + str(nn+1) + ' ' + message)
+            captionFile.write('\n')
+            captionFile.close()
+    print('-- Save caption #' + str(nn+1) + ' to captions.txt --')

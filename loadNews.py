@@ -15,8 +15,9 @@ focus = newspaper.build(url='https://www.focus.it/', language='it', fetch_images
 leganerd = newspaper.build(url='https://leganerd.com/', language='it', fetch_images=False, memoize_articles=cache_articles)
 huffpost = newspaper.build(url='https://www.huffingtonpost.it/news/italia-tecnologia/', language='it', fetch_images=False, memoize_articles=cache_articles)
 giallozafferano = newspaper.build(url='https://blog.giallozafferano.it/community/', language='it', fetch_images=False, memoize_articles=cache_articles)
+techprincess = newspaper.build(url='https://techprincess.it/', language='it', fetch_images=False, memoize_articles=cache_articles)
 
-sources = [tpi, ilpost, internazionale, today, milano_today, fanpage, focus, leganerd, giallozafferano]
+sources = [tpi, ilpost, internazionale, today, milano_today, fanpage, focus, leganerd, giallozafferano, techprincess]
 
 #### USER PROMPT ####
 articleNum = input('Quanti articoli desideri scaricare? [5]: ')
