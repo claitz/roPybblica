@@ -6,7 +6,7 @@ import textwrap
 
 # Assets locations
 fontName = 'assets/Roboto.ttf'
-rawText = 'raw_text/testo.txt'
+rawText = 'raw_text/news.txt'
 bgImage = 'assets/blank_error_single.png'
 
 # Load the raw text
