@@ -37,12 +37,11 @@ print('Ok, I\'m going to generate ' + str(imgNum) + ' images..')
 
 for nn in range(int(imgNum)):
 
-    rndImg = random.randint(1,7)
-    bgImage = 'assets/' + str(rndImg) + '.png'
+    x=random.randint(1,256)
+    y=random.randint(1,256)
+    z=random.randint(1,256)
+    image = Image.new('RGB', (1080, 1080), (x, y, z))
 
-    # create Image object with the input image
-    image = Image.open(bgImage)
-    
     # initialise the drawing context with the image object as background
     draw = ImageDraw.Draw(image)
 
