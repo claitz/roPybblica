@@ -57,7 +57,14 @@ for nn in range(int(imgNum)):
     message_wrap += word_list[-1]
 
     # main message
-    (x, y) = (60, 300)
+    x = 60
+
+    if len(message) > 300:
+        y = 110
+    else:
+        y = 300
+
+    (x, y) = (x, y)
     color = 'rgb(0, 0, 0)'
     draw.multiline_text((x,y), message_wrap, fill=color, font=font, anchor=None, spacing=3, align='left', direction=None, features=None, language=None, stroke_width=0, stroke_fill=None, embedded_color=False)
 
