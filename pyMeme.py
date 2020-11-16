@@ -6,15 +6,6 @@ import markovify, textwrap, random
 # Assets locations
 # fontName = 'assets/Roboto.ttf'
 fontName = 'assets/Merriweather-Bold.ttf'
-rawText = 'raw_text/titoli.txt'
-
-# Load the raw text
-with open(rawText) as f:
-    text = f.read()
-
-# Build the mode
-# text_model = markovify.Text(text)
-text_model = markovify.NewlineText(text)
 
 # set font and size
 fontXS = ImageFont.truetype(fontName, size=20)
@@ -23,17 +14,30 @@ font = ImageFont.truetype(fontName, size=50)
 fontL = ImageFont.truetype(fontName, size=60)
 fontXL = ImageFont.truetype(fontName, size=70)
 
-
-
 #### USER PROMPT ####
+
+sourceText = input('Input the text source file [titoli.txt]: ')
 imgNum = input('Input how many images you need [1]: ')
 fileName = input('Enter the desidered filename [output]: ')
+
+if sourceText == '':
+    rawText = 'raw_text/titoli.txt'
+else:
+    rawText = 'raw_text/' + sourceText + '.txt'
 
 if imgNum == '':
     imgNum = 1
 print('Ok, I\'m going to generate ' + str(imgNum) + ' images..')
 
 #### MAGIC HAPPENS# ####
+
+# Load the raw text
+with open(rawText) as f:
+    text = f.read()
+
+# Build the mode
+# text_model = markovify.Text(text)
+text_model = markovify.NewlineText(text)
 
 for nn in range(int(imgNum)):
 
