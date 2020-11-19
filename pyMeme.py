@@ -16,10 +16,11 @@ fontXL = ImageFont.truetype(fontName, size=70)
 
 #### USER PROMPT ####
 
-sourceText = input('Input the text source file [titoli.txt]: ')
+# sourceText = input('Input the text source file [titoli.txt]: ')
 imgNum = input('Input how many images you need [1]: ')
-fileName = input('Enter the desidered filename [output]: ')
+# fileName = input('Enter the desidered filename [output]: ')
 
+sourceText = ''
 if sourceText == '':
     rawText = 'raw_text/titoli.txt'
 else:
@@ -50,15 +51,19 @@ for nn in range(int(imgNum)):
     draw = ImageDraw.Draw(image)
 
     # generate one short sentence of maximum 300 chars
-    message = text_model.make_short_sentence(600)
+    message = text_model.make_sentence(min_words = 15, max_words=50, tries=30)
 
     # wrap the text at 50 chars
-    wrapper = textwrap.TextWrapper(width=30) 
-    word_list = wrapper.wrap(text=message) 
-    message_wrap = ''
-    for ii in word_list[:-1]:
-        message_wrap = message_wrap + ii + '\n'
-    message_wrap += word_list[-1]
+    try:
+        wrapper = textwrap.TextWrapper(width=30) 
+        word_list = wrapper.wrap(text=message) 
+        message_wrap = ''
+        for ii in word_list[:-1]:
+            message_wrap = message_wrap + ii + '\n'
+        message_wrap += word_list[-1]
+    except:
+        print('Fallito, riprova.')
+        break
 
     # main message
     x = 60
@@ -79,6 +84,7 @@ for nn in range(int(imgNum)):
     draw.multiline_text((x,y), titolo, fill=color, font=font, anchor=None, spacing=3, align='left', direction=None, features=None, language=None, stroke_width=0, stroke_fill=None, embedded_color=False)
 
     # save the edited image
+    fileName = ''
     if fileName == '':
         fileName = 'output'
     image.save('output/'+fileName+str(nn+1)+'.png')
