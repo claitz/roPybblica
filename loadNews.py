@@ -26,10 +26,12 @@ def loadSources():
     leganerd = newspaper.build(url='https://leganerd.com/', language='it', fetch_images=False, memoize_articles=cache_articles)
     giallozafferano = newspaper.build(url='https://blog.giallozafferano.it/community/', language='it', fetch_images=False, memoize_articles=cache_articles)
     techprincess = newspaper.build(url='https://techprincess.it/', language='it', fetch_images=False, memoize_articles=cache_articles)
+    mysecretcase = newspaper.build(url='https://www.mysecretcase.com/blog/', language='it', fetch_images=False, memoize_articles=cache_articles)
+    
     # repubblica = newspaper.build(url='https://www.repubblica.it/', language='it', fetch_images=False, memoize_articles=False)
     # corriere = newspaper.build(url='https://www.corriere.it/', language='it', fetch_images=False, memoize_articles=False)
 
-    sources = [tpi, ilpost, internazionale, today, milano_today, fanpage, focus, huffpost, leganerd, giallozafferano, techprincess]
+    sources = [tpi, ilpost, internazionale, today, milano_today, fanpage, focus, huffpost, leganerd, giallozafferano, techprincess, mysecretcase]
 
     print('Ok, aggiungo ' + str(articleNum) + ' articoli da ' + str(len(sources)) + ' fonti al file ' + newsFileName)
 
