@@ -51,7 +51,7 @@ for nn in range(int(imgNum)):
     draw = ImageDraw.Draw(image)
 
     # generate one short sentence of maximum 300 chars
-    message = text_model.make_sentence(min_words = 15, max_words=50, tries=30,)
+    message = text_model.make_sentence(min_words = 10, max_words=45, tries=30,)
 
     # wrap the text at 50 chars
     try:
