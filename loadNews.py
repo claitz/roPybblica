@@ -7,8 +7,8 @@ def loadNews(source):
         current_article.parse()
         print('Aggiunto titolo [' + current_article.title + '] dalla source [' + source.brand + '] a ' + newsFileName)
         with open('raw_text/' + newsFileName, 'a') as newsFile:
-            newsFile.write(current_article.title)
             newsFile.write('\n')
+            newsFile.write(current_article.title)
             newsFile.close()
         print('Fatto.')
 
